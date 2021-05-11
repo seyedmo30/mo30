@@ -1,0 +1,382 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block breadcrumb %}
+{% load custom_tags %}
+<!-- breadcrumb -->
+
+
+<!-- TOP PART -->
+
+
+
+
+
+
+
+<div class="jumbotron ">
+  <div class="card-deck owl-carousel">
+{% for singer in singers %}
+    <div class="card bg-light" style="height: 400px;">
+      <a style="color: rgb(63, 63, 63);  text-decoration: none;
+      display: inline-block;" href="{% url 'artists' singer.slug %}">
+
+        <img class="card-img-top" src="/media/{{ singer.bg_img }}" alt="{{singer.name}}" style="width:100%;max-height:300px;height:auto">
+        <div class="card-body">
+          <h4 class="card-title text-center">برترین های {{singer.name}}</h4>
+        </div>
+      </a>
+    </div>
+{% endfor %}
+  </div>
+
+</div>
+
+
+
+<nav class="navbar navbar-expand-sm bg-light justify-content-center">
+  <ul class="navbar-nav">
+
+  <li class="nav-item mx-5">
+    <a class="nav-link " style="font-weight: 600;" href="{% url 'index' %}">برترین ها</a>
+  </li>
+  <li class="nav-item mx-5">
+    <a class="nav-link " href="{% url 'myfavorite' %}" style="font-weight: 600;">مورد علاقه ها</a>
+  </li>
+  <li class="nav-item mx-5">
+    <a class="nav-link" href="{% url 'mybest' %}" style="font-weight: 600;">برترین های من</a>
+  </li>
+  <li class="nav-item mx-5">
+    <a class="nav-link" href="{% url 'news' %}" style="font-weight: 600;">تازه ها</a>
+  </li>
+
+</ul>
+</nav>
+
+<div class="container">
+
+  <br>
+
+
+
+
+
+  <div dir="ltr">
+
+
+
+  </div>
+
+<div class="row ">
+  {% if musics%}
+    {%  for music in musics %}
+
+    <div class="col-sm-4 mb-3 ">
+      <div class="card">
+        <div class="card-body card-body-no-padding">
+          <div class="row ">
+            <div class="col-3 ">
+              <img class="rounded" style="width:80px;height: 80px;" src="/media/{% if music.album__img %}{{ music.album__img }}{% else %}{{ music.singer__img }}{% endif %}"
+                alt="{{music.name}} - {{music.album__name}} - {{title}}">
+
+            </div>
+            <div class="col-9  no-gutters">
+
+              <div class="row no-gutters">
+
+                <div class="col-8">
+                  <div style="font-size:18px;font-weight:500" class=" my-1">
+                  {{music.name}}
+
+
+
+                  </div>
+
+                </div>
+
+                <div  data-toggle="tooltip" data-placement="top" title="امتیاز کل" class="col ">
+               
+                  <b>{{music.avg_rate}}</b>
+                  <i style="color:gold;" class="fas fa-star mt-2"></i>
+  
+                </div>
+
+                  <a style="font-size: 20px;text-decoration: none;color: gray;" href="#"  class="fa fa-ellipsis-v m-1" aria-hidden="true"></a>
+                
+              </div>
+
+    <div class=" mb-2" style="font-size:13px">
+      {{music.album__name|default_if_none:' <br> '}}
+
+        </div>
+
+
+<div class="row no-gutters align-items-end">
+  <div class="col   text-center">
+{% if music.like %}
+                    <i  value="{{music.id}}" class=" heart fa fa-heart  "></i>
+{% else %}
+                    <i  value="{{music.id}}"  class=" heart-des fa fa-heart  "></i>
+
+{% endif %}
+
+</div>
+        <div    data-toggle="tooltip" data-placement="top" title="امتیاز من"  class="col mb-1">
+                  <div style="float: left;" value="{{music.id}}" id="rateYo-{{music.id}}"></div>
+
+                </div>
+
+            </div>
+        
+
+
+            </div>
+
+          </div>
+
+
+          <div dir="ltr"  class="ready-player-{{music.id}}" style="width: auto;">
+            <audio crossorigin>
+              <source src="/media/{{ music.file_name }}">
+            </audio>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+{% endfor %}
+{% else %}
+
+moredi yaft nashod
+
+{% endif %}
+
+  </div>
+</div>
+
+
+
+
+
+
+
+{% if musics.has_other_pages %}
+  <ul class="pagination justify-content-center">
+    {% if musics.has_previous %}
+      <li  class="page-item"><a  class="page-link"  href="?page={{ musics.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li  class="page-item" ></li>
+    {% endif %}
+    {% for i in musics.paginator.page_range %}
+      {% if musics.number == i %}
+        <li  class="page-item   active" ><a  class="page-link " href="#">{{ i }}</a></li>
+      {% else %}
+        <li  class="page-item"><a  class="page-link"  href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if musics.has_next %}
+      <li  class="page-item"><a  class="page-link"  href="?page={{ musics.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li  class="page-item" ></li>
+    {% endif %}
+  </ul>
+{% endif %}
+<!-- END TOP PART -->
+<!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">-->
+
+{% endblock %}
+{% block custom_css %}
+
+
+
+
+
+
+
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/css/star-rating.min.css" media="all" -->
+  rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+  crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
+
+<link rel="stylesheet" href="{% static 'vendor/owl_carousel/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'vendor/owl_carousel/owl.theme.default.min.css' %}">
+  
+<style>
+
+.heart {
+	color:red;
+
+}
+.heart-des {
+	color:#aaa;
+}
+.card-body-no-padding {
+    padding: 0.25rem;
+}
+</style>
+{% endblock custom_css %}
+
+{% block custom_js %}
+
+
+
+
+<!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet"> -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/js/star-rating.min.js" -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
+
+  <script src="{% static 'vendor/owl_carousel/owl.carousel.min.js' %}"></script>
+  
+
+<script>
+
+
+var rateyoclass = {
+     
+     starWidth: "18px",
+     normalFill: "#A0A0A0",
+     ratedFill: "yellow",
+     numStars: 10,
+     maxValue: 10,
+     halfStar: true,
+     rating:0,
+   };
+
+
+
+
+
+
+
+  function ajax_star_submit(id, rate) {
+
+        $.ajax({
+          type: 'POST',
+          url: "{% url 'rate:ajax-star-submit'  %}",
+          headers: {'X-CSRFToken': '{{csrf_token}}'},
+          data:{
+              'id':id,
+              'rate':rate,
+          },
+        });
+
+
+
+    return true;
+  }
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  {% for music in musics %}
+    new GreenAudioPlayer('.ready-player-{{music.id}}', { stopOthersOnPlay: true });
+
+    $("#rateYo-{{music.id}}").rateYo(rateyoclass ).rateYo("option", "onSet",function (rating) {ajax_star_submit($(this).attr('value'),rating)}){% if music.rate  %}.rateYo("option", "rating","{{ music.rate | halfNumber  }}"){% endif %}  ;
+
+{%  endfor %}
+
+  });
+
+
+     
+</script>
+
+<script>
+
+  var vartest;
+
+
+
+  function ajax_like_submit(id, class_heart) {
+
+    if(class_heart.includes("des")){
+      var status = 0;
+    }
+    else{
+      var status = 1;
+
+    }
+        $.ajax({
+          type: 'POST',
+          url: "{% url 'rate:ajax-heart-submit'  %}",
+          headers: {'X-CSRFToken': '{{csrf_token}}'},
+          data:{
+              'id':id,
+              'status':status,
+          },
+        });
+
+
+
+    return true;
+  }
+
+  $(".target").keyup(function () {
+    vartest = this.value;
+    console.log(vartest);
+  });
+
+    $("#sub").click(function () {
+      alert(vartest);
+    });
+  
+
+  $(".heart.fa").click(function() {
+  $(this).toggleClass("heart heart-des");
+  var id = $(this).attr('value');  
+  var class_heart = $(this).attr("class");
+  ajax_like_submit(id,class_heart);
+
+  
+  });
+
+  $(".heart-des.fa").click(function() {
+  $(this).toggleClass("heart heart-des");
+    var class_heart = $(this).attr("class");
+    var id = $(this).attr('value');  
+
+  ajax_like_submit(id,class_heart);
+
+  });
+
+$(document).ready(function(){
+ var owl = $('.owl-carousel');
+ owl.owlCarousel({
+        responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:2,
+            nav:false
+        },
+        1000:{
+            items:4,
+            nav:true,
+            loop:true
+        }
+    },
+    loop:true,
+    rtl:true,
+    autoplay:true,
+    autoplayTimeout:4000,
+    autoplayHoverPause:true
+});
+});
+
+</script>
+
+{% endblock custom_js %}

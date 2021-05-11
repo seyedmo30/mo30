@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="fa">
+
+<head>
+  <title>
+    برترین آهنگ های دهه 60 | {{title}} 
+  </title>
+
+  <meta charset="UTF-8">
+  <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="مشاهده و انتخاب برترین آهنگ های دهه 60 ستارگان موسیقی ایرانی - {{title}} ">
+	<meta property="og:locale" content="fa_IR" />
+	<meta property="og:type" content="article" />
+  <meta property="og:title" content="   برترین آهنگ های دهه 60 | {{title}} " />
+	<meta property="og:description" content="مشاهده و انتخاب برترین آهنگ های دهه 60 ستارگان موسیقی ایرانی - {{title}} " />
+  <meta name="geo.region" content="IR" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load static %}
+  {% block plugins %}
+  {% endblock %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'base/css/all_page.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vazir-font/26.0.2/font-face.css"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vazir-font/26.0.2/font-face.css"
+    crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="{%static 'base/css/harmony.css' %}">
+  <link rel="stylesheet" href="{% static 'GroupsAdmin/base/base_css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/css/green-audio-player.min.css">
+  <link rel="stylesheet" href="{% static 'GroupsAdmin/base/base_css/custom.css' %}">
+  <link rel="stylesheet" href="{% static 'GroupsAdmin/base/fonts/site_font/style.css' %}">
+  <!-- end: Base link page -->
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css'>
+  <!-- start: plugin css -->
+  {% block custom_css %}{% endblock %}
+  <!-- end: plugin css -->
+</head>
+
+<body style="font-family:vazir" dir="rtl">
+
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark form-group navbar-fixed-top">
+    <div class="container">
+
+      <h1 class="navbar-brand" href="#">
+        برترین آهنگ های ستارگان
+      </h1>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="/">صفحه اصلی<span class="sr-only">(current)</span></a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+              {{user}}
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">مدیریت حساب</a>
+
+              <form method="post" action="{% url 'profiles:logout' %}">
+                {% csrf_token %}
+
+                <button class="dropdown-item">خروج از حساب</button>
+              </form>
+
+
+            </div>
+          </li>
+
+
+
+          {% else %}
+          <li class="nav-item mx-2">
+
+            <a href="#" data-toggle="modal" data-target="#myModal" class="nav-link ">
+
+              ورود
+            </a>
+          </li>
+
+          {% endif %}
+
+
+
+          {% block navitem %}
+
+          {% endblock %}
+        </ul>
+      </div>
+
+    </div>
+
+  </nav>
+  <br>
+  <div class="modal fade" id="signup_modal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">
+            ایجاد حساب کاربر
+          </h4>
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+        </div>
+        <div class="modal-body">
+          <div id="error_text_signup">
+          </div>
+          
+          <div class="form-group">
+            <label for="username">نام کاربری</label>
+            <input type="username" class="form-control" id="username_signup" placeholder="نام کاربری را وارد کنید"
+              name="username">
+          </div>
+
+          
+          <div class="form-group">
+            <label for="email">ایمیل </label>
+            <input type="email" class="form-control" id="email_signup" placeholder="ایمیل  را وارد کنید"
+              name="email">
+          </div>
+
+          <div class="row">
+
+            <div class="form-group col-6">
+              <label for="pwd">رمز</label>
+              <input type="password" class="form-control" id="password_signup" placeholder="رمز خود را وارد کنید"
+                name="password">
+            </div>
+  
+            <div class="form-group col-6">
+              <label for="pwd">تکرار رمز</label>
+              <input type="password" class="form-control" id="password_confirm_signup" placeholder="رمز خود را تکرار کنید"
+                name="password_confirm">
+            </div>
+  
+
+          </div>
+
+          <div class="row mx-1">
+
+          <button onclick="func_signup()" type="submit" class=" col-3 mb-1 btn btn-primary">ثبت نام</button>
+
+                    
+          <a href="#"  data-dismiss="modal" data-toggle="modal" data-target="#signup_modal" class="nav-link  col-6">
+            بیشتر
+          </a>
+
+
+          </div>
+          
+
+
+
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">
+            صفحه ی ورود
+          </h4>
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+        </div>
+        <div class="modal-body">
+          <div id="error_text">
+          </div>
+          <div class="form-group">
+            <label for="username">نام کاربری</label>
+            <input onkeypress="autoLogin(event)" type="username" class="form-control" id="username" placeholder="نام کاربری را وارد کنید"
+              name="username">
+          </div>
+          <div class="form-group">
+            <label for="pwd">رمز</label>
+            <input onkeypress="autoLogin(event)" type="password" class="form-control" id="password" placeholder="رمز خود را وارد کنید"
+              name="password">
+          </div>
+          <div class="form-group form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" name="remember"> مرا به خاطر بسپار
+
+            </label>
+          </div>
+          <button onclick="func_login()" type="submit" class="mb-1 btn btn-primary">ورود</button>
+
+
+          <br>
+          در صورتی که هنوز ثبت نام نکرده اید کلیلک کنید
+          <div class="text-center my-1 ">
+
+            <a href="#"  data-dismiss="modal" data-toggle="modal" data-target="#signup_modal" class="nav-link ">
+
+              ثبت نام
+            </a>
+          </div>
+
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <br>
+  <br>
+  {% block breadcrumb %}
+  <!-- breadcrumb -->
+  <ol class="breadcrumb rtl" style="background-color:white;">
+    <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i>
+        <span>صفحه اصلی</span></a></li>
+  </ol>
+  {% endblock breadcrumb %}
+  {% block content %}
+
+  {% endblock %}
+
+  <!-- end /.container -->
+  <!--</div>-->
+  <!-- FOOTER -->
+  <div class="form-group">
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark " style="place-content: center">
+      <p style="color: #f5dd5d;display: contents">
+        برترین آهنگ های ستارگان
+      </p>
+    </nav>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+
+  <style>
+    a.ui-datepicker-rtl .ui-datepicker-prev {
+      direction: rtl;
+    }
+  </style>
+  <!-- END FOOTER -->
+
+
+  <!-- start: plugin script -->
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-144124775-1');
+  </script>
+  <script type="text/javascript" src="{% static 'GroupsAdmin/base/base_js/custom.js' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/js/green-audio-player.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script type="text/javascript">
+
+function autoLogin(e) {
+  if (e.keyCode == 13) func_login()
+}
+
+function func_login() {
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'profiles:login' %}",
+        headers: { 'X-CSRFToken': '{{csrf_token}}' },
+        data: {
+          'username': $("#username").val(),
+          'password': $("#password").val()
+
+        },
+        success: function (data_response) {
+
+
+          window.location.reload(1);
+
+
+
+
+
+        },
+        error: function (data) {
+          console.log(data);
+          console.log(data.status);
+          $("#error_text").empty();
+
+          $("#error_text").append('<b style="color:red"> نام کاربری یا رمز ورود اشتباه است</b>');
+
+        },
+      }
+      );
+
+
+
+    }
+
+
+    function func_signup() {
+      var ss = $("#username").val();
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'profiles:signup' %}",
+        headers: { 'X-CSRFToken': '{{csrf_token}}' },
+        data: {
+          'username': $("#username_signup").val(),
+          'password': $("#password_signup").val(),
+          'confirm': $("#password_confirm_signup").val(),
+          'email': $("#email_signup").val(),
+
+          
+
+        },
+        success: function (data_response) {
+
+
+          window.location.reload(1);
+
+
+
+
+
+        },
+        error: function (data) {
+          console.log(data);
+          console.log(data.status);
+          $("#error_text_signup").empty();
+
+          $("#error_text_signup").append('<b style="color:red"> '+  data.responseJSON.message  +'</b>');
+
+        },
+      }
+      );
+
+
+
+    }
+
+  </script>
+
+
+  {% block custom_js %}
+  {% endblock %}
+  <!-- end: plugin script -->
+</body>
+
+</html>
