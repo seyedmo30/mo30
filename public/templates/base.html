@@ -27,6 +27,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vazir-font/26.0.2/font-face.css"
     crossorigin="anonymous" />
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
   <link rel="stylesheet" href="{%static 'base/css/harmony.css' %}">
   <link rel="stylesheet" href="{% static 'GroupsAdmin/base/base_css/font-awesome.min.css' %}">
   <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css" crossorigin="anonymous">
@@ -37,6 +39,7 @@
   <!-- end: Base link page -->
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css'>
+  <link rel="stylesheet" href="sweetalert2.min.css">
   <!-- start: plugin css -->
   {% block custom_css %}{% endblock %}
   <!-- end: plugin css -->
@@ -47,7 +50,7 @@
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark form-group navbar-fixed-top">
     <div class="container">
 
-      <h1 class="navbar-brand" href="#">
+      <h1 onclick="warning_login()" class="navbar-brand" href="#">
         برترین آهنگ های ستارگان
       </h1>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -280,6 +283,8 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/js/green-audio-player.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   <script type="text/javascript">
@@ -363,6 +368,36 @@ function func_login() {
 
 
     }
+
+
+
+function warning_login(){
+
+
+
+
+Swal.fire({
+  icon: 'error',
+  title: 'ابتدا وارد حساب خود شوید',
+  text: 'بدون هیچ هزینه ای می توانید حساب خود را ایجاد کنید',
+  footer: '<a onclick="swal.closeModal();return false;"  data-toggle="modal" data-target="#signup_modal" href="#">ایجاد حساب شخصی</a>',
+
+    showClass: {
+    popup: 'animate__animated animate__fadeInDown'
+  },
+  hideClass: {
+    popup: 'animate__animated animate__fadeOutUp'
+  },
+    confirmButtonText: '<a style="text-decoration: none;color:white;" href="#" data-toggle="modal" data-target="#myModal"> ورود </a>',
+  showCloseButton: true,
+
+
+
+})
+
+
+
+  }
 
   </script>
 
