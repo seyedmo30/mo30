@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Music , Artist
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from profiles.models import Rate
 from django.db.models import Q ,F , OuterRef, Subquery
 
