@@ -19,6 +19,10 @@ urlpatterns = [
     path('rate/', include('general.urls', namespace='rate')),
     path('artists/<slug:slug>',artists , name='artists'),
 
+    path('google230e3cfee612c87e', googleVerify),
+
+
+
     path('__debug__/', include(debug_toolbar.urls))
 
 ]

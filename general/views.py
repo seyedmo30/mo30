@@ -8,6 +8,14 @@ from django.http import HttpResponse, JsonResponse
 from decimal import Decimal
 from django.db.models import IntegerField, Value , BooleanField
 
+
+
+
+def googleVerify(request):
+    return render(request,'google230e3cfee612c87e.html',{})
+
+
+
 def paginator_and_return(request,total_musics,*args,**kwargs):
     singers=Artist.objects.filter(main_art=0)
     paginator  = Paginator(total_musics, 21)
