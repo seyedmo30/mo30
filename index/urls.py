@@ -21,6 +21,7 @@ urlpatterns = [
 
     path('google230e3cfee612c87e', googleVerify),
 
+    path('google230e3cfee612c87e.html', googleVerify),
 
 
     path('__debug__/', include(debug_toolbar.urls))

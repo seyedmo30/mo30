@@ -74,9 +74,7 @@ def myFavorite(request,*args,**kwargs):
 
 def news(request,*args,**kwargs):
 
-    musics_rated = Music.objects.filter(music_rate__user_r=request.user)
-    musics_unrated = Music.objects.all()
-    total_musics =musics_unrated.difference(musics_rated).values('id','avg_rate','album__name','file_name','singer__img','name','album__img','album__img').order_by('-avg_rate')
+    total_musics = Music.objects.exclude(music_rate__user_r=request.user).values('id','avg_rate','album__name','file_name','singer__img','name','album__img','album__img').order_by('-avg_rate')
     context =paginator_and_return(request,total_musics)
 
     context["title"]= "مشاهده نشده"
