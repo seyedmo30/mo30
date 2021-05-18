@@ -278,7 +278,7 @@ var rateyoclass = {
 
 
   function ajax_star_submit(id, rate) {
-
+{% if user.is_authenticated %}
         $.ajax({
           type: 'POST',
           url: "{% url 'rate:ajax-star-submit'  %}",
@@ -289,8 +289,10 @@ var rateyoclass = {
           },
         });
 
+{% else %}
 
-
+      warning_login()
+{% endif %}
     return true;
   }
 
@@ -320,7 +322,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   function ajax_like_submit(id, class_heart) {
-
+    {% if user.is_authenticated %}
     if(class_heart.includes("des")){
       var status = 0;
     }
@@ -337,9 +339,11 @@ document.addEventListener('DOMContentLoaded', function () {
               'status':status,
           },
         });
+    {% else %}
 
 
-
+      warning_login()
+    {% endif %}
     return true;
   }
 
