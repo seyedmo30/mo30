@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from .models import Music , Artist
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from profiles.models import Rate
@@ -9,12 +9,8 @@ from decimal import Decimal
 from django.db.models import IntegerField, Value , BooleanField
 
 
-
-
 def googleVerify(request):
     return render(request,'google230e3cfee612c87e.html',{})
-
-
 
 def paginator_and_return(request,total_musics,*args,**kwargs):
     singers=Artist.objects.filter(main_art=0)
@@ -31,7 +27,6 @@ def paginator_and_return(request,total_musics,*args,**kwargs):
         "singers":singers,
     }
     return context
-
 
 def index(request,*args,**kwargs):
 
@@ -50,6 +45,8 @@ def index(request,*args,**kwargs):
     return render(request,'index.html',context)
 
 def myBest(request,*args,**kwargs):
+    if not request.user.is_authenticated:
+        return redirect('/')
     musics_rated = Music.objects.filter(Q(music_rate__user_r=request.user) & Q(music_rate__rate_r__isnull=False)).annotate(rate=F("music_rate__rate_r") , like =F("music_rate__like_r") ).values('id','avg_rate','album__name','file_name','singer__img','name','rate','album__img','album__img','like').order_by('-rate')
     total_musics =musics_rated 
     context =paginator_and_return(request,total_musics)
@@ -61,6 +58,8 @@ def myBest(request,*args,**kwargs):
     return render(request,'index.html',context)
 
 def myFavorite(request,*args,**kwargs):
+    if not request.user.is_authenticated:
+        return redirect('/')
     musics_rated = Music.objects.filter(Q(music_rate__user_r=request.user) & Q(music_rate__like_r=True)).annotate(rate=F("music_rate__rate_r") , like =F("music_rate__like_r") ).values('id','avg_rate','album__name','file_name','singer__img','name','rate','album__img','album__img','like').order_by('-rate')
     total_musics =musics_rated 
     context =paginator_and_return(request,total_musics)
@@ -71,9 +70,9 @@ def myFavorite(request,*args,**kwargs):
 
     return render(request,'index.html',context)
 
-
 def news(request,*args,**kwargs):
-
+    if not request.user.is_authenticated:
+        return redirect('/')
     total_musics = Music.objects.exclude(music_rate__user_r=request.user).values('id','avg_rate','album__name','file_name','singer__img','name','album__img','album__img').order_by('-avg_rate')
     context =paginator_and_return(request,total_musics)
 
@@ -100,6 +99,39 @@ def artists(request,*args,**kwargs):
 
 
     return render(request,'index.html',context)
+
+def music(request,*args,**kwargs):
+    
+    value = (kwargs)['slug'].replace("-","/")
+    value = value.replace("/mp3",".mp3")
+
+    music = Music.objects.select_related('singer').select_related('album').get(file_name=value)
+
+    context = {
+        "music" : music,
+        # "singers":singers,
+    }
+    title = []
+
+    try:
+        title.append(music.singer.slug)
+        title.append(music.singer.name)
+    except:
+        pass
+
+    try:
+        title.append(music.album.slug)
+        title.append(music.album.name)
+    except:
+        pass
+
+    string = " - "
+    string = string.join(title)
+    context["title"]=  str(music.name) + " | " + string 
+
+    context["description"]= "برترین آهنگ های ستارگان دهه شصت به انتخاب شما - ابی هایده داریوش سیاوش"  + string
+
+    return render(request,'detail.html',context)
 
 def detail(request,*args,**kwargs):
     from django.conf import settings

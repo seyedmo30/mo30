@@ -1,5 +1,6 @@
+  {% load static %}
 <!doctype html>
-<html lang="fa">
+<html lang="fa" dir="rtl" >
 
 <head>
   <title>
@@ -7,16 +8,19 @@
   </title>
  <meta name="google-site-verification" content="P_42ELaeAFT_9vZplRM0vjpFAWhgun6-vdWYAu-X8PE">
   <meta charset="UTF-8">
-  <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+  <meta name="keywords" content=" برترین ها , نظرسنجی ,دهه 60 , نوستالژی , آهنگ ,  هایده, داریوش,ابی">
+
   <meta name="description" content="مشاهده و انتخاب برترین آهنگ های دهه 60 ستارگان موسیقی ایرانی - {{title}} ">
+  <meta property="og:phone_number" content="+989361914675" />
+  <meta property="og:email" content="seyed.mo30@gmail.com" />
 	<meta property="og:locale" content="fa_IR" />
 	<meta property="og:type" content="article" />
   <meta property="og:title" content="   برترین آهنگ های دهه 60 | {{title}} " />
 	<meta property="og:description" content="مشاهده و انتخاب برترین آهنگ های دهه 60 ستارگان موسیقی ایرانی - {{title}} " />
   <meta name="geo.region" content="IR" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  {% load static %}
   {% block plugins %}
   {% endblock %}
   <meta charset="UTF-8">
@@ -32,6 +36,8 @@
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css'>
   <!-- start: plugin css -->
+   <link rel = "icon" href="{% static 'assets/img/icon.png' %}" type = "image/x-icon">
+        
   {% block custom_css %}{% endblock %}
   <!-- end: plugin css -->
 </head>
@@ -87,10 +93,6 @@
           {% endif %}
 
 
-
-          {% block navitem %}
-
-          {% endblock %}
         </ul>
       </div>
 
@@ -226,13 +228,7 @@
 
   <br>
   <br>
-  {% block breadcrumb %}
-  <!-- breadcrumb -->
-  <ol class="breadcrumb rtl" style="background-color:white;">
-    <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i>
-        <span>صفحه اصلی</span></a></li>
-  </ol>
-  {% endblock breadcrumb %}
+
   {% block content %}
 
   {% endblock %}

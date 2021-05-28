@@ -18,29 +18,27 @@ class Artist(models.Model):
     img = models.ImageField(upload_to='img/artists/', null=True, blank=True)
     bg_img = models.ImageField(upload_to='img/background_artists/', null=True, blank=True)
     main_art = models.IntegerField(verbose_name='دسته', choices=MAIN_ART, default=4)
-    slug = models.SlugField(verbose_name=' نام - انگلیسی ', max_length=30 , unique=True )
+    slug = models.SlugField(verbose_name=' نام - انگلیسی ', max_length=30 , unique=True,null=True )
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-        super(Artist, self).save(*args, **kwargs)
+    def get_absolute_url(self):
+            return f'/artists/{self.slug}'
 
 class Album(models.Model):
     name = models.CharField(verbose_name='عنوان ', max_length=30)
     description = models.TextField(verbose_name='توصیف ')
-    date = models.DateField(verbose_name='تاریخ ',null=True, blank=True)
     img = models.ImageField(upload_to='img/albums/', null=True, blank=True)
+    slug = models.SlugField(verbose_name=' نام - انگلیسی ', max_length=30 , unique=True ,null=True )
 
     def __str__(self):
         return self.name
 
 def user_directory_path(instance, filename): 
     if instance.album:
-        return 'musics/{0}/{1}/{2}'.format(instance.singer.name,instance.album.name ,filename) 
+        return 'musics/{0}/{1}/{2}'.format(instance.singer.slug,instance.album.slug ,filename) 
     else:
-        return 'musics/{0}/other/{1}'.format(instance.singer.name, filename) 
+        return 'musics/{0}/other/{1}'.format(instance.singer.slug, filename) 
 
 class Music(models.Model):
     name = models.CharField(verbose_name='عنوان ', max_length=30)
@@ -54,3 +52,9 @@ class Music(models.Model):
     
     def __str__(self):
         return self.name
+        
+    def get_absolute_url(self):
+        slug = str(self.file_name)
+        slug = slug.replace("/","-")
+        slug = slug.replace(".","-")
+        return f'/music/{slug}'

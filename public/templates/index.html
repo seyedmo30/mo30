@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% load widget_tweaks %}
-{% block breadcrumb %}
+{% block content %}
 {% load custom_tags %}
 <!-- breadcrumb -->
 
@@ -13,13 +12,12 @@
 
 
 
-
 <div class="jumbotron ">
   <div class="card-deck owl-carousel">
 {% for singer in singers %}
     <div class="card bg-light" style="height: 400px;">
       <a style="color: rgb(63, 63, 63);  text-decoration: none;
-      display: inline-block;" href="{% url 'artists' singer.slug %}">
+      display: inline-block;" href="{{singer.get_absolute_url}}">
 
         <img class="card-img-top" src="/media/{{ singer.bg_img }}" alt="{{singer.name}}" style="width:100%;max-height:300px;height:auto">
         <div class="card-body">
@@ -89,7 +87,6 @@
   </div>
 
 <div class="row ">
-  {% if musics%}
     {%  for music in musics %}
 
     <div class="col-sm-4 mb-3 ">
@@ -107,8 +104,9 @@
 
                 <div class="col-8">
                   <div style="font-size:18px;font-weight:500" class=" my-1">
+                  <a style="text-decoration: none;color: black;" href="music/{{music.file_name | slashToBash }}">
                   {{music.name}}
-
+                  </a>
 
 
                   </div>
@@ -158,6 +156,7 @@
 
           <div dir="ltr"  class="ready-player-{{music.id}}" style="width: auto;">
             <audio crossorigin>
+            
               <source src="/media/{{ music.file_name }}">
             </audio>
           </div>
@@ -170,11 +169,6 @@
 
 
 {% endfor %}
-{% else %}
-
-moredi yaft nashod
-
-{% endif %}
 
   </div>
 </div>
