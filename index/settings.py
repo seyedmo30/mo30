@@ -1,6 +1,6 @@
 
 
-deploy = False
+deploy = True
 
 import os
 
