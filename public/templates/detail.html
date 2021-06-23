@@ -34,46 +34,6 @@
 
 
 
-<nav class="navbar navbar-expand-sm bg-light justify-content-center">
-  <ul class="navbar-nav">
-
-  <li class="nav-item mx-5">
-    <a class="nav-link " style="font-weight: 600;" href="{% url 'index' %}">برترین ها</a>
-  </li>
-
-  {% if user.is_authenticated  %}
-
-
-
-  <li class="nav-item mx-5">
-    <a class="nav-link " href="{% url 'myfavorite' %}" style="font-weight: 600;">مورد علاقه ها</a>
-  </li>
-  <li class="nav-item mx-5">
-    <a class="nav-link" href="{% url 'mybest' %}" style="font-weight: 600;">برترین های من</a>
-  </li>
-  <li class="nav-item mx-5">
-    <a class="nav-link" href="{% url 'news' %}" style="font-weight: 600;">تازه ها</a>
-  </li>
-
-{% else %}
-
-
-
-  <li class="nav-item mx-5">
-    <a class="nav-link " href="#" onclick=warning_login() style="font-weight: 600;">مورد علاقه ها</a>
-  </li>
-  <li class="nav-item mx-5">
-    <a class="nav-link" href="#" onclick=warning_login() style="font-weight: 600;">برترین های من</a>
-  </li>
-  <li class="nav-item mx-5">
-    <a class="nav-link" href="#" onclick=warning_login() style="font-weight: 600;">تازه ها</a>
-  </li>
-
-
-{% endif %}
-</ul>
-</nav>
-
 <div class="container">
 
   <br>
@@ -81,11 +41,10 @@
   <div dir="ltr">
 
   </div>
+  <div class="row ">
 
-<div class="col-12 ">
- 
 
-    <div class="col-sm-5 mb-3 ">
+    <div  class="offset-sm-1 mb-3 col-sm-4">
       <div class="card">
         <div class="card-body card-body-no-padding">
           <div class="row ">
@@ -160,9 +119,219 @@
         </div>
       </div>
     </div>
-
+    <div style="  line-height: 2.3;" class=" mb-3 col-sm-3">
+      آلبوم: ستاره های سربی
+      <br>  
+      آهنگساز: فرید زلاند
+      <br>    
+      تنظیم : منوچهر چشم آذر
+      <br>
+    </div>
 
   </div>
+
+    <br>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#home">متن موسیقی</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#menu1">نظرات</a>
+      </li>
+      
+    </ul>
+  
+    <!-- Tab panes -->
+    <div class="tab-content">
+
+      <div id="home"  class="container tab-pane active text-center "><br>
+        <br>
+       
+
+      <p>  عشق اگه روز ازل در دل دیوانه نبود 
+      </p>
+      <p>  تا ابد زیر فلک ناله مستانه نبود
+      </p>
+      <p>  نرگس ساقی اگه مستی صد جام نداشت 
+      </p>
+      <p>  سر هر کوی و گذر این همه میخانه نبود
+      </p>
+      <p>  من و جام می و دل نقش تو در باده ناب 
+      </p>
+      <p>  خلوتی بود که در آن ره بیگانه نبود
+      </p>
+      <p>  کاش آن تب که تو را سوخت مرا سوخته بود 
+      </p>
+      <p>  بفدای تو مگه این دل دیوانه نبود
+      </p>
+      <p>  بفدای تو مگه این دل دیوانه نبود 
+      </p>
+      <p>  تو چرا شمع شدی سوختی ای هستی من
+      </p>
+      <p>  آن زمانی که تو را سایه پروانه نبود 
+      </p>
+      <p>  من جدا از تو نبودم بخدا در همه عمر
+      </p>
+      <p>  قبله گاه دل من جز تو در این خانه نبود 
+      </p>
+      <p>  کاش آن تب که تو را سوخت مرا سوخته بود
+      </p>
+      <p>  بفدای تو مگه این دل دیوانه نبود 
+      </p>
+      <p>  بفدای تو مگه این دل دیوانه نبود
+      </p>
+      <p>  عشق اگه روز ازل در دل دیوانه نبود 
+      </p>
+      <p>  تا ابد زیر فلک ناله مستانه نبود
+      </p>
+      <p>  نرگس ساقی اگه مستی صد جام نداشت 
+      </p>
+      <p>  سر هر کوی و گذر این همه میخانه نبود
+      </p>
+      <p>  من و جام می و دل نقش تو در باده ناب 
+      </p>
+      <p>  خلوتی بود که در آن ره بیگانه نبود
+      </p>
+      <p>  کاش آن تب که تو را سوخت مرا سوخته بود 
+      </p>
+      <p>  بفدای تو مگه این دل دیوانه نبود
+      </p>
+      <p>  بفدای تو مگه این دل دیوانه نبود 
+      </p>
+      <p>  تو چرا شمع شدی سوختی ای هستی من
+      </p>
+      <p>  آن زمانی که تو را سایه پروانه نبود 
+      </p>
+      <p>  من جدا از تو نبودم بخدا در همه عمر
+      </p>
+      <p>  قبله گاه دل من جز تو در این خانه نبود 
+      </p>
+      <p>  کاش آن تب که تو را سوخت مرا سوخته بود
+      </p>
+      <p>  بفدای تو مگه این دل دیوانه نبود 
+      </p>
+      <p>  بفدای تو مگه این دل دیوانه نبود
+      </p>
+      <p>  بفدای تو مگه این دل دیوانه نبود 
+      </p>
+          
+            
+        <li class="write-new">
+
+          <form action="#" method="post">
+
+              <textarea placeholder="نظر خود را وارد کنید..." name="comment"></textarea>
+
+              <div>
+                  <button type="submit">ارسال</button>
+                  <br>
+              </div>
+
+          </form>
+          <br>
+
+      </li>
+      <br>
+
+          
+        
+        
+       
+      </div>
+      <div id="menu1" class="container tab-pane fade"><br>
+     
+    
+
+		<ul class="comment-section">
+
+			<li class="comment user-comment">
+
+                <div class="info">
+                    <a href="#">Anie Silverston</a>
+                    <span>4 hours ago</span>
+                </div>
+
+                <a class="avatar" href="#">
+                    <img src="images/avatar_user_1.jpg" width="35" alt="Profile Avatar" title="Anie Silverston" />
+                </a>
+
+                <p>Suspendisse gravida sem?</p>
+
+			</li>
+
+			<li class="comment author-comment">
+
+                <div class="info">
+                    <a href="#">مصطفی حسینی</a>
+                    <span>1 ساعت قبل</span>
+
+
+                </div>
+
+                <a class="avatar" href="#">
+                    <img src="{% static 'assets/img/person2.png' %}" width="35" alt="Profile Avatar" title="Jack Smith" />
+                </a>
+
+                <p>یک پردازش چند مرحله ای می باشد. در این آموزش از کتاب</p>
+
+			</li>
+
+			<li class="comment user-comment">
+
+                <div class="info">
+                    <a href="#">Bradley Jones</a>
+                    <span>۱ ساعت قبل</span>
+                </div>
+
+                <a class="avatar" href="#">
+                    <img src="{% static 'assets/img/person.png' %}" width="35" alt="Profile Avatar" title="Bradley Jones" />
+                </a>
+
+                <p>یک پردازش چند مرحله ای می باشد. در این آموزش از کتاب</p>
+
+			</li>
+
+            <li class="comment author-comment">
+
+                <div class="info">
+                    <a href="#"> حسینی</a>
+                    <span>۳ ساعت قبل</span>
+
+                </div>
+
+                <a class="avatar" href="#">
+                    <img src="{% static 'assets/img/person2.png' %}" width="35" alt="Profile Avatar" title="Jack Smith" />
+                </a>
+
+                <p>
+                
+                  یک hhhhhhhhhh چند مرحله ای می باشد. در این آموزش از کتاب، به نحوه نصب جنگو فریم ورک وب پایتون و وابستگی های آن می پردازیم
+                </p>
+
+            </li>
+
+            <li class="write-new">
+
+                <form action="#" method="post">
+
+                    <textarea placeholder="نظر خود را وارد کنید..." name="comment"></textarea>
+
+                    <div>
+                        <button type="submit">ارسال</button>
+                        <br>
+                    </div>
+
+                </form>
+
+            </li>
+
+		</ul>
+    
+      </div>
+    
+    </div>
+  
 </div>
 
 
@@ -175,13 +344,257 @@
 {% block custom_css %}
 
 
+<style>
 
 
 
 
 
-<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/css/star-rating.min.css" media="all" -->
-  rel="stylesheet" type="text/css" />
+.comment-section{
+    list-style: none;
+    max-width: 800px;
+    width: 100%;
+    margin: 50px auto;
+    padding: 10px;
+}
+
+.comment{
+    display: flex;
+    border-radius: 3px;
+    margin-bottom: 45px;
+    flex-wrap: wrap;
+}
+
+.comment.user-comment{
+    color:  #808080;
+}
+
+.comment.author-comment{
+    color:  #60686d;
+    justify-content: flex-end;
+}
+
+/* User and time info */
+
+.comment .info{
+    width: 17%;
+}
+
+.comment.user-comment .info{
+    text-align: right;
+}
+
+.comment.author-comment .info{
+    order: 3;
+}
+
+
+.comment .info a{	/* User name */
+    display: block;
+    text-decoration: none;
+    color: #656c71;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px 0 3px 0;
+}
+
+.comment .info span{	/* Time */
+    font-size: 11px;
+    color:  #9ca7af;
+}
+
+
+/* The user avatar */
+
+.comment .avatar{
+    width: 8%;
+}
+
+.comment.user-comment .avatar{
+    padding: 10px 18px 0 3px;
+}
+
+.comment.author-comment .avatar{
+    order: 2;
+    padding: 10px 3px 0 18px;
+}
+
+.comment .avatar img{
+    display: block;
+    border-radius: 50%;
+}
+
+.comment.user-comment .avatar img{
+    float: right;
+}
+
+
+
+
+
+/* The comment text */
+
+.comment p{
+    line-height: 1.5;
+    padding: 18px 22px;
+    width: 50%;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.comment.user-comment p{
+    background-color:  #f3f3f3;
+}
+
+.comment.author-comment p{
+    background-color:  #e2f8ff;
+    order: 1;
+}
+
+.user-comment p:after{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 2px solid #f3f3f3;
+    left: -8px;
+    top: 18px;
+}
+
+.author-comment p:after{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 2px solid #e2f8ff;
+    right: -8px;
+    top: 18px;
+}
+
+
+
+
+/* Comment form */
+
+.write-new{
+    margin: 80px auto 0;
+    width: 50%;
+}
+
+.write-new textarea{
+    color:  #444;
+    font: inherit;
+
+    outline: 0;
+    border-radius: 3px;
+    border: 1px solid #cecece;
+    background-color:  #fefefe;
+    box-shadow: 1px 2px 1px 0 rgba(0, 0, 0, 0.06);
+    overflow: auto;
+
+    width:100%;
+    min-height: 80px;
+    padding: 15px 20px;
+}
+
+.write-new img{
+    border-radius: 50%;
+    margin-top: 15px;
+}
+
+.write-new button{
+    float:right;
+    background-color:  #87bae1;
+    box-shadow: 1px 2px 1px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    border: 0;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+
+    padding: 10px 25px;
+    margin-top: 18px;
+}
+
+
+
+/* Responsive styles */
+
+@media (max-width: 800px){
+    /* Make the paragraph in the comments take up the whole width,
+    forcing the avatar and user info to wrap to the next line*/
+    .comment p{
+        width: 100%;
+    }
+
+    /* Reverse the order of elements in the user comments,
+    so that the avatar and info appear after the text. */
+    .comment.user-comment .info{
+        order: 3;
+        text-align: left;
+    }
+
+    .comment.user-comment .avatar{
+        order: 2;
+    }
+
+    .comment.user-comment p{
+        order: 1;
+    }
+
+
+    /* Align toward the beginning of the container (to the left)
+    all the elements inside the author comments. */
+    .comment.author-comment{
+        justify-content: flex-start;
+    }
+
+
+    .comment-section{
+        margin-top: 10px;
+    }
+
+    .comment .info{
+        width: auto;
+    }
+
+    .comment .info a{
+        padding-top: 15px;
+    }
+
+    .comment.user-comment .avatar,
+    .comment.author-comment .avatar{
+        padding: 15px 10px 0 18px;
+        width: auto;
+    }
+
+    .comment.user-comment p:after,
+    .comment.author-comment p:after{
+        width: 12px;
+        height: 12px;
+        top: initial;
+        left: 28px;
+        bottom: -6px;
+    }
+
+    .write-new{
+        width: 100%;
+    }
+}
+
+
+</style>
+
+
+
+
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" /> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
   crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
