@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 # Create your models here.
 class Artist(models.Model):
 
@@ -25,6 +27,12 @@ class Artist(models.Model):
     def get_absolute_url(self):
             return f'/artists/{self.slug}'
 
+@receiver(post_save, sender=Artist)
+def save_profile(sender, instance, **kwargs):
+    from index.redislight import RedisLight
+    redislight =RedisLight()
+    singers=Artist.objects.filter(main_art=0).values('name','bg_img','slug')
+    redislight.set_queryset_values_redis('singers',singers)
 class Album(models.Model):
     name = models.CharField(verbose_name='عنوان ', max_length=30)
     description = models.TextField(verbose_name='توصیف ')

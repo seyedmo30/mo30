@@ -17,7 +17,7 @@
 {% for singer in singers %}
     <div class="card bg-light" style="height: 400px;">
       <a style="color: rgb(63, 63, 63);  text-decoration: none;
-      display: inline-block;" href="{{singer.get_absolute_url}}">
+      display: inline-block;" href="{% if singer.get_absolute_url %}{{singer.get_absolute_url}}{% else %}/artists/{{singer.slug}}{% endif %}">
 
         <img class="card-img-top" src="/media/{{ singer.bg_img }}" alt="{{singer.name}}" style="width:100%;max-height:300px;height:auto">
         <div class="card-body">

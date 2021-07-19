@@ -3,17 +3,27 @@ from .models import Music , Artist
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from profiles.models import Rate
 from django.db.models import Q ,F , OuterRef, Subquery
-
 from django.http import HttpResponse, JsonResponse
 from decimal import Decimal
 from django.db.models import IntegerField, Value , BooleanField
 
+# from pprint import pprint
+from json import loads
+from index.redislight import RedisLight
 
 def googleVerify(request):
     return render(request,'google230e3cfee612c87e.html',{})
 
 def paginator_and_return(request,total_musics,*args,**kwargs):
-    singers=Artist.objects.filter(main_art=0)
+    redislight =RedisLight()
+    instance =redislight.get_redis('singers')
+
+    if (instance):
+        singers = loads(instance)
+    else:
+        singers=Artist.objects.filter(main_art=0).values('name','bg_img','slug')
+        instance =redislight.set_queryset_values_redis('singers',singers)
+
     paginator  = Paginator(total_musics, 21)
     page = request.GET.get('page', 1)
     try:
@@ -90,7 +100,6 @@ def artists(request,*args,**kwargs):
         total_musics = Music.objects.filter(singer__slug=(kwargs)['slug']).annotate(rate=Subquery(rate_user.values("rate_r")) , like =Subquery(rate_user.values("like_r")) ).values('id','avg_rate','album__name','file_name','singer__img','name','rate','album__img','like').order_by('-avg_rate')
     else:
         total_musics = Music.objects.filter(singer__slug=(kwargs)['slug']).values('id','avg_rate','album__name','file_name','singer__img','name','album__img').order_by('-avg_rate')
-
     context =paginator_and_return(request,total_musics)
     artist = str(Artist.objects.get(slug=(kwargs)['slug']))
     context["title"]= artist + " - " + str((kwargs)['slug'])
