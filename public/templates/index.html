@@ -94,9 +94,7 @@
         <div class="card-body card-body-no-padding">
           <div class="row ">
             <div class="col-3 ">
-              <img class="rounded" style="width:80px;height: 80px;" src="/media/{% if music.album__img %}{{ music.album__img }}{% else %}{{ music.singer__img }}{% endif %}"
-                alt="{{music.name}} - {{music.album__name}} - {{title}}">
-
+              <img class="rounded" style="width:80px;height: 80px;" src="{% returnDirImg  name=music.album__name|safe albumimg=music.album__img|safe singer=music.singer__img %} "   alt="{{music.name}} - {{music.album__name}} - {{title}}">
             </div>
             <div class="col-9  no-gutters">
 

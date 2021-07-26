@@ -3,6 +3,7 @@ from django.conf import settings
 from django.utils.text import slugify
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from PIL import Image
 # Create your models here.
 class Artist(models.Model):
 
@@ -41,6 +42,13 @@ class Album(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        image =self.img.open()
+        image = Image.open(image).convert("RGB")
+        image.thumbnail(size=((70, 70)))
+        image.save(str(settings.MEDIA_ROOT) + "img/albums/webp/" + str(self.name)+".webp","webp")
+        super(Album, self).save(*args, **kwargs) # Call the real save() method
 
 def user_directory_path(instance, filename): 
     if instance.album:
