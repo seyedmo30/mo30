@@ -65,7 +65,7 @@ class Music(models.Model):
     poet = models.ForeignKey(Artist, verbose_name='poet', related_name='musics_poet', on_delete=models.SET_NULL,null=True, blank=True)
     album = models.ForeignKey(Album, verbose_name='album', related_name='musics_album', on_delete=models.SET_NULL,null=True, blank=True)
     avg_rate =models.DecimalField(blank=True, null=True,default=15, max_digits=3, decimal_places=1)
-    
+    text = models.TextField(verbose_name='متن ',null=True,blank=True)
     def __str__(self):
         return self.name
         

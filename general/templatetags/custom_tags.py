@@ -27,3 +27,12 @@ def returnDirImg( **kwargs):
                   return  "/media/"+str(albumimg)
       else:
             return  "/media/"+str(singer)
+
+
+
+
+@register.simple_tag
+def multiline_break(value):
+      return (value.replace("\\n", "<br>"))
+
+register.filter('multiline_break', multiline_break)
