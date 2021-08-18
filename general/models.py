@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save , post_delete
 from django.dispatch import receiver
 from PIL import Image
 # Create your models here.
@@ -28,7 +28,7 @@ class Artist(models.Model):
     def get_absolute_url(self):
             return f'/artists/{self.slug}'
 
-@receiver(post_save, sender=Artist)
+@receiver([post_save, post_delete], sender=Artist)
 def save_profile(sender, instance, **kwargs):
     from index.redislight import RedisLight
     redislight =RedisLight()

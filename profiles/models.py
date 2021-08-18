@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from index.settings import AUTH_USER_MODEL as User
 from general.models import Music
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class CustomUser(AbstractUser):
 
@@ -16,7 +18,12 @@ class Rate(models.Model):
 
     class Meta:
         index_together = (('user_r','music_r'),)
-
+        
+@receiver(post_save, sender=Rate)
+def post_save_function(sender, instance,created, **kwargs):
+    if int(instance.id)%10==0 and created:
+        from general.procedure import AvgMusic
+        AvgMusic.callProcedure()
 
 
 class Feedback (models.Model):
