@@ -66,7 +66,7 @@ class AvgMusic():
                     pass
 
 
-
+    @classmethod
     def callProcedure(self):
         with connection.cursor() as cursor:
             cursor.execute("call update_avg_music() ;")
